@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TravelGo</title>
+    <!-- Modern Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark-text: #1e293b;
+            --muted-text: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: var(--bg-white);
+            width: 900px;
+            max-width: 90%;
+            height: 550px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Left Side - Image */
+        .login-image {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&auto=format&fit=crop&w=1308&q=80') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: white;
+        }
+        
+        .login-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.8));
+        }
+
+        .image-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-text h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .image-text p {
+            margin: 10px 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Right Side - Form */
+        .login-form {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form h2 {
+            color: var(--dark-text);
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            width: 100%;
+            text-align: left;
+        }
+
+        .login-form > p.subtitle {
+            color: var(--muted-text);
+            font-size: 15px;
+            margin-bottom: 30px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: var(--transition);
+            outline: none;
+            color: var(--dark-text);
+            background-color: var(--bg-light);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-blue);
+            background-color: var(--bg-white);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-login:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .register-text {
+            margin-top: 24px;
+            color: var(--muted-text);
+            font-size: 14px;
+        }
+
+        .register-text a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-back {
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--bg-light);
+            color: var(--muted-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            background-color: var(--border-color);
+            color: var(--dark-text);
+        }
+
+        /* Alert Messages */
+        .alert {
+            width: 100%;
+            padding: 12px;
+            background-color: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .success {
+            width: 100%;
+            padding: 12px;
+            background-color: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                height: auto;
+                width: 90%;
+            }
+            .login-image {
+                height: 200px;
+                padding: 20px;
+            }
+            .login-form {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Left Side: Travel Image -->
+        <div class="login-image">
+            <div class="image-text">
+                <h2>Explore the World</h2>
+                <p>Start your journey with TravelGo today.</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="login-form">
+            <h2>Welcome back</h2>
+            <p class="subtitle">Please enter your details to sign in.</p>
+            
+            {% if error %}
+                <div class="alert"><i class="fa-solid fa-circle-exclamation"></i> {{ error }}</div>
+            {% endif %}
+            {% if message %}
+                <div class="success"><i class="fa-solid fa-circle-check"></i> {{ message }}</div>
+            {% endif %}
+
+            <form action="/login" method="POST" style="width: 100%;">
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+            </form>
+
+            <div class="register-text">
+                Don't have an account? <a href="/register">Create one here</a>
+            </div>
+
+            <a href="/" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

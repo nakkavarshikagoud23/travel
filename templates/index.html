@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelGo - Book Your Journey</title>
+    <!-- Modern Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark-text: #1e293b;
+            --muted-text: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --accent-orange: #f59e0b;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--bg-light);
+            color: var(--dark-text);
+        }
+
+        /* Navbar Design */
+        .navbar {
+            background-color: var(--bg-white);
+            padding: 15px 5% /* Responsive padding */;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar .logo {
+            color: var(--primary-blue);
+            font-size: 26px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--muted-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links .btn-login {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        .nav-links .btn-login:hover {
+            background-color: var(--primary-hover);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            font-weight: 300;
+            max-width: 600px;
+            margin-bottom: 40px;
+            color: #e2e8f0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-btn:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: -60px; /* Overlap with hero */
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--bg-white);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            transition: var(--transition);
+            border: 1px solid #f1f5f9;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            height: 50px;
+            width: 50px;
+            background-color: #eff6ff;
+            color: var(--primary-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: var(--dark-text);
+            font-size: 20px;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--muted-text);
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .promo-code {
+            display: inline-block;
+            margin-top: 15px;
+            background: #fef3c7;
+            color: #d97706;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px dashed #f59e0b;
+        }
+
+        /* Content Sections (About & Contact) */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 { font-size: 40px; }
+            .navbar { padding: 15px 20px; }
+            .nav-links { display: none; /* In a real app, add a hamburger menu here */ }
+        }
+
+        .section-header {
+            color: var(--primary-blue);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .content-section h2 {
+            color: var(--dark-text);
+            font-size: 36px;
+            margin-top: 0;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .content-section p {
+            color: var(--muted-text);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Style for Contact */
+        .contact-box {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f1f5f9;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: var(--primary-blue);
+            font-size: 20px;
+            width: 24px;
+        }
+
+        footer {
+            background-color: var(--dark-text);
+            color: white;
+            text-align: center;
+            padding: 24px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-plane-departure"></i> TravelGo
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+            <!-- Link to the Flask route you provided -->
+            <a href="/login" class="btn-login">Sign In</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div id="home" class="hero">
+        <h1>Where to next?</h1>
+        <p>Your ultimate platform to seamlessly book flights, trains, buses, and hotels all in one place.</p>
+        
+        <div class="hero-buttons">
+            <a href="/flight" class="hero-btn"><i class="fa-solid fa-plane"></i> Flights</a>
+            <a href="/train" class="hero-btn"><i class="fa-solid fa-train"></i> Trains</a>
+            <a href="/bus" class="hero-btn"><i class="fa-solid fa-bus"></i> Buses</a>
+            <a href="/hotels" class="hero-btn"><i class="fa-solid fa-hotel"></i> Hotels</a>
+        </div>
+    </div>
+
+    <!-- Features Section (Pulled up over the hero image slightly) -->
+    <div class="features-section">
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-tags"></i></div>
+            <h3>Featured Deals</h3>
+            <p>Get flat 30% off on your first bus booking. Experience comfort without breaking the bank.</p>
+            <span class="promo-code">CODE: TRAVEL30</span>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-couch"></i></div>
+            <h3>Live Seat Availability</h3>
+            <p>Say goodbye to guesswork. Choose your exact seats in real-time with our interactive layouts.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-bell"></i></div>
+            <h3>Instant Notifications</h3>
+            <p>Stay updated. Receive instant email confirmations via AWS SNS the moment you book.</p>
+        </div>
+    </div>
+
+    <!-- About & Contact Wrapper -->
+    <div class="content-wrapper">
+        <!-- About Us Section -->
+        <div id="about" class="content-section">
+            <span class="section-header">Our Mission</span>
+            <h2>Travel Made Simple</h2>
+            <p>
+                TravelGo is a unified, cloud-powered travel booking platform designed for the modern explorer. We eliminate the hassle of jumping between different apps by providing a seamless interface to reserve buses, trains, flights, and accommodations.
+            </p>
+            <p>
+                Built on reliable AWS infrastructure, we ensure your data is secure and your booking experience is lightning-fast, leaving you more time to plan the fun parts of your journey.
+            </p>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div id="contact" class="content-section">
+            <span class="section-header">Get in Touch</span>
+            <h2>We're Here to Help</h2>
+            <p>Need assistance with a booking or have a special request? Our support team is available 24/7.</p>
+            
+            <div class="contact-box">
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i> support@travelgo.com
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i> +1 (800) 123-4567
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i> Tech Park, Hyderabad, India
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 TravelGo. All rights reserved. Cloud-Powered Travel.
+    </footer>
+
+</body>
+</html>
